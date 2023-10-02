@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // 共通の処理を関数に切り出す
 function GetThreadTitle() {
-  const apiUrl = 'https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads?offset=3'; 
+  const apiUrl = 'https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads?offset=0'; 
   const [threadsData, setThreadsData] = useState([]);
   useEffect(() => {
       // APIエンドポイントURL
