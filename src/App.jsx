@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { ViewThread } from './ViewThread';
 import { CreateThread } from './CreateThread';
+import { ThreadDetail } from './ThreadDetail';
 
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
       <Routes>
         <Route path="/" element={<ViewThread />} />
         <Route path="/create-thread" element={<CreateThread />} />
+        {/* スレッド詳細ページのルート */}
+        <Route path="/thread/:id" element={<ThreadDetail />} />
       </Routes>
     </Router>
   );
