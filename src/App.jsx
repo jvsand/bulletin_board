@@ -12,7 +12,7 @@ function App() {
       <h1 className='App-header'>掲示板</h1>
       <Routes>
         <Route path="/" element={<ViewThread />} />
-        <Route path="/create-thread" element={<CreateThread />} />
+        <Route path="/thread/new" element={<CreateThread />} />
       </Routes>
     </Router>
   );
