@@ -37,18 +37,15 @@ export const CreateThread = () => {
         placeholder="スレッド名を入力してください"
         onChange={handleChange}
       ></input>
-      <p class="row-buttons">
-        <button class="row-button" onClick={MovePage("/")}>
+      <div className="row-buttons">
+        <button className="row-button" onClick={MovePage("/")}>
           戻る
         </button>
-        <button class="row-button" onClick={handleSubmit}>
+        <button className="row-button" onClick={handleSubmit}>
           作成
         </button>
-      </p>
-      <p>
-        {/* post完了メッセージを表示 */}
-        {postComplete && <p>スレッドを作成しました</p>}
-      </p>
+      </div>
+      {postComplete && <p>スレッドを作成しました</p>}
     </div>
   );
 };

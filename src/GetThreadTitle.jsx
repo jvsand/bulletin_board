@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // 共通の処理を関数に切り出す
-function GetThreadTitle(url) {
+function GetThreadTitle() {
   const [threadsData, setThreadsData] = useState([]);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const apiUrl =
     "https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads?offset=0";
 
@@ -32,9 +32,12 @@ function GetThreadTitle(url) {
         {threadsData.map((thread, { id }) => (
           <tr key={id}>
             <td>
-              <Link to={`/thread/${thread.id}/`}>{thread.title}</Link>
-              {/* オフセットしたものを表示させるようにしないといけないかも。。。？ */}
-              {/* <Link to={`/thread/${thread.id}/posts?offset=1`}>{thread.title}</Link> */}
+              <Link
+                to={`/thread/${thread.id}/posts?offset=0`}
+                state={{ id: thread.id, title: thread.title }}
+              >
+                {thread.title}
+              </Link>
             </td>
           </tr>
         ))}

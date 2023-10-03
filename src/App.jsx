@@ -12,8 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ViewThread />} />
         <Route path="/thread/new" element={<CreateThread />} />
-        {/* スレッド詳細ページのルート */}
-        <Route path="/thread/:id" element={<ThreadDetail />} />
+        <Route path="/thread/:id/posts" element={<ThreadDetail />} />
       </Routes>
     </Router>
   );
