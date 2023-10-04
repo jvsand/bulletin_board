@@ -7,7 +7,11 @@ export const ThreadDetail = () => {
   const location = useLocation();
   const { id, title } = location.state;
   const [comment, setComment] = useState("");
-  const [detailData, setDetailData] = useState([]);
+  const [detailData, setDetailData] = useState({
+    "postId":"",
+    "threadId": "Id",
+    "post": "",
+  });
   const [postComplete, setPostComplete] = useState(false); //作成完了したかどうかのflg
 
   const handleChange = (e) => setComment(e.target.value);
@@ -30,7 +34,7 @@ export const ThreadDetail = () => {
           .then((response) => {
             const data = response.data;
             setDetailData(data);
-            console.log(data);
+            console.log("POST更新後のログ: ", data);
           })
           .catch((error) => {
             console.error("APIリクエストエラー:", error);
@@ -47,7 +51,7 @@ export const ThreadDetail = () => {
       .then((response) => {
         const data = response.data;
         setDetailData(data);
-        console.log(data);
+        console.log("GETのログ: ", data);
       })
       .catch((error) => {
         console.error("APIリクエストエラー:", error);
@@ -69,10 +73,10 @@ export const ThreadDetail = () => {
         />
 
         {/* コメント一覧の表示 */}
-        {detailData && detailData.length > 0 && (
+        {detailData.posts && detailData.posts.length > 0 && (
           <table>
             <tbody>
-              {detailData.map((post) => (
+              {detailData.posts.map((post) => (
                 <tr key={post.id}>
                   <td>{post.content}</td>
                 </tr>
