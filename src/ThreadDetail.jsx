@@ -10,6 +10,35 @@ export const ThreadDetail=()=> {
 
   const [detailData, setDetailData] = useState([]);
   const threadDetailUrl = `https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads/${id}/posts?offset=0`;
+  const postCommentUrl = `https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads/${id}/posts`;
+
+
+  const handlePostComment=()=>{
+    const newCommentContent = document.getElementById("newComment").value;
+  // API を使用して新しいコメントをサーバーに送信するロジックを追加
+  // 成功したらコメントデータを取得し、setDetailData で更新
+  // 失敗時のエラーハンドリングも追加
+
+  const postData = {
+    post: newCommentContent,
+  };
+
+  axios
+    .post(postCommentUrl, postData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  .then((response) => {
+    // 成功したらコメントデータを更新
+    const newComment = response.data;
+    setDetailData((prevData) => [newComment, ...prevData]); // 最新のコメントを先頭に追加
+    console.log("投稿成功:", newComment);
+  })
+  .catch((error) => {
+    console.error("コメントの投稿エラー:", error);
+    });
+  };
 
   useEffect(() => {
     axios
@@ -42,6 +71,7 @@ export const ThreadDetail=()=> {
        {/* <table>
          <tbody>
            {detailData.map((post) => (
+          //  {detailData.slice(0,10).map((post) => (
              <tr key={post.id}>
                <td>{post.content}</td>
              </tr>
@@ -50,7 +80,7 @@ export const ThreadDetail=()=> {
        </table> */}
 
       <div>
-        <button className="row-button">投稿</button>
+        <button className="row-button" onClick={handlePostComment}>投稿</button>
         <button className="row-button" onClick={MovePage("/")}>
         戻る
         </button>
