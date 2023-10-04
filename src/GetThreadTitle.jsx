@@ -1,34 +1,46 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 // 共通の処理を関数に切り出す
 function GetThreadTitle() {
-  const apiUrl = 'https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads?offset=0'; 
   const [threadsData, setThreadsData] = useState([]);
+  // const navigate = useNavigate();
+  const apiUrl =
+    "https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads?offset=0";
+
   useEffect(() => {
-      // APIエンドポイントURL
-      // APIリクエストを送信
-      axios.get(apiUrl)
-        .then((response) => {
-          // レスポンスからデータを取得
-          const data = response.data;
-          // データをスレッドの状態に設定
-          setThreadsData(data);
-          // データをコンソールに出力して確認
-          console.log(data); // ここでコンソールに出力
-        })
-        .catch((error) => {
-          console.error('APIリクエストエラー:', error);
-        });
-    }, []);
+    // APIエンドポイントURL
+    // APIリクエストを送信
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        // レスポンスからデータを取得
+        const data = response.data;
+        // データをスレッドの状態に設定
+        setThreadsData(data);
+        // データをコンソールに出力して確認
+        console.log(data); // ここでコンソールに出力
+      })
+      .catch((error) => {
+        console.error("APIリクエストエラー:", error);
+      });
+  }, []);
   return (
-    <table >
+    <table>
       <tbody>
-        {threadsData.map((thread,{id})=>
+        {threadsData.map((thread, { id }) => (
           <tr key={id}>
-            <td>{thread.title}</td>
+            <td>
+              <Link
+                to={`/thread/${thread.id}/posts?offset=0`}
+                state={{ id: thread.id, title: thread.title }}
+              >
+                {thread.title}
+              </Link>
+            </td>
           </tr>
-        )}
+        ))}
       </tbody>
     </table>
   );

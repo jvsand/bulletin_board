@@ -1,46 +1,39 @@
 .App-header {
-  background-color: rgb(43, 178, 97);
+  background-color: #2bb261;
   color: #f2f2f2;
 }
-/* body/tableの設定 */
 body {
   background-color: #f2f2f2;
 }
-
 table {
+  background-color: #fff;
   border-collapse: collapse;
-  background-color: white;
   width: 100%;
 }
-
-th,
-td {
-  border: 1px solid #dddddd;
-  text-align: left;
+td,
+th {
+  border: 1px solid #ddd;
   padding: 8px;
+  text-align: left;
 }
-
-tr:nth-child(even) {
+tr:nth-child(2n) {
   background-color: #f2f2f2;
 }
-
 th {
   background-color: #4caf50;
-  color: white;
+  color: #fff;
 }
-
-/* ボタンの設定 */
 .row-buttons {
   display: flex;
   justify-content: center;
 }
 .row-button {
-  padding: 8px 20px;
-  border: solid 2px #ddd;
+  border: 2px solid #ddd;
   border-radius: 10px;
   font-size: 16px;
-
+  padding: 8px 20px;
   &:nth-child(n + 2) {
     margin-left: 20px;
   }
 }
+/*# sourceMappingURL=main.43ba5b25.css.map*/
