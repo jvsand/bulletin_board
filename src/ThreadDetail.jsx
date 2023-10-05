@@ -9,7 +9,7 @@ export const ThreadDetail = () => {
   const [comment, setComment] = useState("");
   const [detailData, setDetailData] = useState({
     "postId":"",
-    "threadId": "Id",
+    "threadId": "",
     "post": "",
   });
   const [postComplete, setPostComplete] = useState(false); //作成完了したかどうかのflg
@@ -78,7 +78,7 @@ export const ThreadDetail = () => {
             <tbody>
               {detailData.posts.map((post) => (
                 <tr key={post.id}>
-                  <td>{post.content}</td>
+                  <td>{post.post}</td>
                 </tr>
               ))}
             </tbody>
