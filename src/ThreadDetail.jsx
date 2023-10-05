@@ -8,9 +8,9 @@ export const ThreadDetail = () => {
   const { id, title } = location.state;
   const [comment, setComment] = useState("");
   const [detailData, setDetailData] = useState({
-    "postId":"",
-    "threadId": "",
-    "post": "",
+    postId: "",
+    threadId: "",
+    post: "",
   });
   const [postComplete, setPostComplete] = useState(false); //作成完了したかどうかのflg
 
@@ -21,6 +21,14 @@ export const ThreadDetail = () => {
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
+
+    const validateComment = (comment) => {
+      return comment.trim() !== "";
+    };
+    if(!validateComment(comment)){
+      console.error("コメントが空です");
+      return;
+    };
 
     axios
       .post(postCommentUrl, { post: comment })
@@ -62,7 +70,6 @@ export const ThreadDetail = () => {
     <form onSubmit={handleCommentSubmit}>
       <div>
         <h3>title: {title}</h3>
-        <p>id: {id}</p>
         <input
           id="newComment"
           value={comment}

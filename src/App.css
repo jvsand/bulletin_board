@@ -1,5 +1,5 @@
 .App-header {
-  background-color: rgb(43, 178, 97);
+  background-color: #11cccc;
   color: #f2f2f2;
 }
 /* body/tableの設定 */
@@ -36,7 +36,7 @@ th {
 }
 .row-button {
   padding: 8px 20px;
-  border: solid 2px #ddd;
+  border: solid 2px #11cccc;
   border-radius: 10px;
   font-size: 16px;
 

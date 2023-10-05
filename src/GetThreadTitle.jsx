@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 // 共通の処理を関数に切り出す
 function GetThreadTitle() {
   const [threadsData, setThreadsData] = useState([]);
-  // const navigate = useNavigate();
   const apiUrl =
     "https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads?offset=0";
 
