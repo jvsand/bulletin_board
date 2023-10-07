@@ -13,8 +13,12 @@ export const ThreadDetail = () => {
     post: "",
   });
   const [postComplete, setPostComplete] = useState(false); //作成完了したかどうかのflg
+  const [commentError, setCommentError] = useState("");
 
-  const handleChange = (e) => setComment(e.target.value);
+  const handleChange = (e) => {
+    setComment(e.target.value);
+    setCommentError("");
+  };
 
   const threadDetailUrl = `https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads/${id}/posts?offset=0`;
   const postCommentUrl = `https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads/${id}/posts`;
@@ -26,7 +30,8 @@ export const ThreadDetail = () => {
       return comment.trim() !== "";
     };
     if(!validateComment(comment)){
-      console.error("コメントが空です");
+      console.error("投稿内容がありません");
+      setCommentError("投稿内容がありません");
       return;
     };
 
@@ -99,8 +104,11 @@ export const ThreadDetail = () => {
           </button>
         </div>
 
-        {/* postComplete が true の場合に成功メッセージを表示 */}
+        {/* postComplete が true / 成功メッセージを表示 */}
         {postComplete && <p>コメントを投稿しました</p>}
+
+        {/* コメントが空の場合にエラーメッセージを表示 */}
+        {commentError && <p>{commentError}</p>}
       </div>
     </form>
   );
