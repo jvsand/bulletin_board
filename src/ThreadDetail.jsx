@@ -73,43 +73,45 @@ export const ThreadDetail = () => {
 
   return (
     <form onSubmit={handleCommentSubmit}>
-      <div>
-        <h3>title: {title}</h3>
-        <input
-          id="newComment"
-          value={comment}
-          type="text"
-          size="50"
-          placeholder="内容を記載してください"
-          onChange={handleChange}
-        />
-
+        <h3 className="threadtitle">title: {title}</h3>
+        <div className="container2">
+      <div className="row-container">
         {/* コメント一覧の表示 */}
         {detailData.posts && detailData.posts.length > 0 && (
-          <table>
-            <tbody>
-              {detailData.posts.map((post) => (
-                <tr key={post.id}>
-                  <td>{post.post}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+            <table className="commentlist">
+              <tbody>
+                {detailData.posts.map((post) => (
+                  <tr key={post.id}>
+                    <td>{">"} {title}<br />{post.post}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
         )}
+      </div>
+      <div className="comment-container">
+          <input
+            id="newComment"
+            value={comment}
+            type="text"
+            size="50"
+            placeholder="内容を記載してください"
+            onChange={handleChange}
+            />
 
-        <div>
-          <button className="row-button">投稿</button>
-          <button className="row-button" onClick={MovePage("/")}>
-            戻る
-          </button>
-        </div>
-
+          <div className="button-container">
+            <button className="button-done ">投稿</button>
+            <button className="button-return" onClick={MovePage("/")}>
+              戻る
+            </button>
+          </div>
+      </div>
+      </div>
         {/* postComplete が true / 成功メッセージを表示 */}
         {postComplete && <p>コメントを投稿しました</p>}
 
         {/* コメントが空の場合にエラーメッセージを表示 */}
         {commentError && <p>{commentError}</p>}
-      </div>
     </form>
   );
 };

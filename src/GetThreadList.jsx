@@ -26,7 +26,7 @@ function GetThreadTitle() {
       });
   }, []);
   return (
-    <table>
+    <table className="threadlist">
       <tbody>
         {threadsData.map((thread, { id }) => (
           <tr key={id}>

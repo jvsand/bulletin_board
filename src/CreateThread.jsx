@@ -29,7 +29,7 @@ export const CreateThread = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <h3 className="">スレッドの新規作成</h3>
+        <h3 className="App-subTitle">スレッドの新規作成</h3>
         <input
           id="newTitle"
           value={newTitle}
@@ -39,12 +39,12 @@ export const CreateThread = () => {
           onChange={handleChange}
         />
       </div>
-      <p className="row-buttons">
-        <button className="row-button" onClick={MovePage("/")}>
-          戻る
-        </button>
-        <button className="row-button" type="submit">
+      <p className="button-container">
+        <button className="button-done" type="submit">
           作成
+        </button>
+        <button className="button-return" onClick={MovePage("/")}>
+          戻る
         </button>
       </p>
       <p>

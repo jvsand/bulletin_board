@@ -1,13 +1,11 @@
 import "./App.css";
-import MovePage from "./MovePage";
-import GetThreadTitle from "./GetThreadTitle";
+import GetThreadList from "./GetThreadList";
 
 export const ViewThread = () => {
   return (
-    <div>
-      <h3>新着スレッド</h3>
-      <button onClick={MovePage("/thread/new")}>新しいスレッドを作成</button>
-      {GetThreadTitle()}
+    <div className="header-container">
+      <h3 className="App-subTitle">新着スレッド</h3>
+      {GetThreadList()}
     </div>
   );
 };
