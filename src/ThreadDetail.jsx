@@ -20,7 +20,6 @@ export const ThreadDetail = () => {
     setCommentError("");
   };
 
-  const threadDetailUrl = `https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads/${id}/posts?offset=0`;
   const postCommentUrl = `https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads/${id}/posts`;
 
   const handleCommentSubmit = (e) => {
@@ -42,16 +41,7 @@ export const ThreadDetail = () => {
         setPostComplete(true);
         console.log("投稿成功", newComment);
         // コメント後の表示
-        axios
-          .get(threadDetailUrl)
-          .then((response) => {
-            const data = response.data;
-            setDetailData(data);
-            console.log("POST更新後のログ: ", data);
-          })
-          .catch((error) => {
-            console.error("APIリクエストエラー:", error);
-          });
+        getComment(postCommentUrl);
       })
       .catch((error) => {
         console.error("APIリクヱストエラー", error);
@@ -59,17 +49,21 @@ export const ThreadDetail = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(threadDetailUrl)
-      .then((response) => {
-        const data = response.data;
-        setDetailData(data);
-        console.log("GETのログ: ", data);
-      })
-      .catch((error) => {
-        console.error("APIリクエストエラー:", error);
-      });
+    getComment(postCommentUrl);
   }, []);
+
+  function getComment(Url){
+    axios
+    .get(Url)
+    .then((response) => {
+      const data = response.data;
+      setDetailData(data);
+      console.log("POST更新後のログ: ", data);
+    })
+    .catch((error) => {
+      console.error("APIリクエストエラー:", error);
+    });
+  }
 
   return (
     <form onSubmit={handleCommentSubmit}>
@@ -98,7 +92,6 @@ export const ThreadDetail = () => {
             placeholder="内容を記載してください"
             onChange={handleChange}
             />
-
           <div className="button-container">
             <button className="button-done ">投稿</button>
             <button className="button-return" onClick={MovePage("/")}>
